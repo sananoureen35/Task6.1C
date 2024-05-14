@@ -5,7 +5,7 @@ environment {
     }
     tools {
     maven 'My Maven 3.6.3'
-    jdk 'OpenJDK 11'
+    jdk 'OpenJDK11'
 }
     stages {
         stage('Build') {
