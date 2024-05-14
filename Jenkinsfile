@@ -18,7 +18,6 @@ environment {
         }
         stage('Unit and Integration Tests') {
             steps {
-                echo “running unit tests to ensure the code functions as expected”
                 sh 'mvn test'
             }
         }
