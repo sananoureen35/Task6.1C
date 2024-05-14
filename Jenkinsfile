@@ -1,7 +1,7 @@
 pipeline {
     agent any
 environment {
-        ENV_VARIABLE = EnvVar
+        ENV_VARIABLE = 'EnvVar'
     }
 
     tools {
@@ -12,19 +12,19 @@ environment {
     stages {
         stage('Build') {
             steps {
-                echo “Building the code using a Maven build automation tool”
+                echo “building the code using a maven build automation tool”
                 sh 'mvn clean install'
             }
         }
         stage('Unit and Integration Tests') {
             steps {
-                echo “Running unit tests to ensure the code functions as expected”
+                echo “running unit tests to ensure the code functions as expected”
                 sh 'mvn test'
             }
         }
         stage('Code Analysis') {
             steps {
-                echo “Analysing the code to ensure it meets the industry standard”
+                echo “analysing the code to ensure it meets the industry standard”
                 sh 'sonar-scanner’
             }
         }
@@ -43,19 +43,19 @@ environment {
         }
         stage('Deploy to Staging') {
             steps {
-                echo 'Deploying the application to staging environment'
+                echo 'deploying the application to staging environment'
                 sh './deploy_staging.sh' 
            }
         }
         stage('Integration Tests on Staging') {
             steps {
-                echo “Running integration tests on staging”
+                echo “running integration tests on staging”
                  sh 'run-integration-tests.sh'
             }
         }
         stage('Deploy to Production') {
             steps {
-                echo "Deploy application to production…."
+                echo "deploy application to production"
                  sh './deploy_production.sh' 
            }
         }
