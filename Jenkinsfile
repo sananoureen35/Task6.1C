@@ -11,12 +11,12 @@ environment {
         stage('Build') {
             steps {
                 echo "building the code using a maven build automation tool"
-                sh 'mvn clean install'
+                sh './build.sh'
             }
         }
         stage('Unit and Integration Tests') {
             steps {
-                sh 'mvn test'
+                sh './test.sh'
             }
         }
        stage('Code Analysis') {
