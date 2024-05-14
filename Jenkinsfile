@@ -12,25 +12,25 @@ environment {
     stages {
         stage('Build') {
             steps {
-                echo “Building the code using a Maven build automation tool....”
+                echo “Building the code using a Maven build automation tool”
                 sh 'mvn clean install'
             }
         }
         stage('Unit and Integration Tests') {
             steps {
-                echo “Running unit tests to ensure the code functions as expected….”
+                echo “Running unit tests to ensure the code functions as expected”
                 sh 'mvn test'
             }
         }
         stage('Code Analysis') {
             steps {
-                echo “Analysing the code to ensure it meets the industry standard….”
+                echo “Analysing the code to ensure it meets the industry standard”
                 sh 'sonar-scanner’
             }
         }
         stage('Security Scan') {
             steps {
-                echo “Performing security scan to identify any vulnerabilities….”
+                echo “Performing security scan to identify any vulnerabilities”
                 sh 'security-scan-tool'
             }
             post {
@@ -49,7 +49,7 @@ environment {
         }
         stage('Integration Tests on Staging') {
             steps {
-                echo “Running integration tests on staging.…”
+                echo “Running integration tests on staging”
                  sh 'run-integration-tests.sh'
             }
         }
