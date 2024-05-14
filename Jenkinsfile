@@ -3,6 +3,10 @@ pipeline {
 environment {
         ENV_VARIABLE = 'EnvVar'
     }
+    tools {
+    maven 'My Maven 3.6.3'
+    jdk 'My OpenJDK 11'
+}
     stages {
         stage('Build') {
             steps {
