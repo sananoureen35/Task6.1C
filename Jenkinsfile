@@ -34,6 +34,7 @@ environment {
                         )
                     }
                 }
+            }
         }
        stage('Code Analysis') {
     steps {
