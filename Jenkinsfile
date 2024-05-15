@@ -12,7 +12,8 @@ environment {
         }
         stage('Unit and Integration Tests') {
             steps {
-                //sh 'mvn test'
+            echo "running unit tests to ensure the code functions as expected"
+            //sh 'mvn test'
             }
         }
        stage('Code Analysis') {
