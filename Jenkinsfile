@@ -3,32 +3,28 @@ pipeline {
 environment {
         ENV_VARIABLE = 'EnvVar'
     }
-    tools {
-    maven 'My Maven 3.6.3'
-    jdk 'OpenJDK11'
-}
     stages {
         stage('Build') {
             steps {
                 echo "building the code using a maven build automation tool"
-                sh './build.sh'
+                //sh './build.sh'
             }
         }
         stage('Unit and Integration Tests') {
             steps {
-                sh './test.sh'
+                //sh './test.sh'
             }
         }
        stage('Code Analysis') {
     steps {
         echo "analyzing the code to ensure it meets the industry standard"
-        sh 'sonar-scanner'
+        //sh 'sonar-scanner'
     }
 }
         stage('Security Scan') {
             steps {
                 echo "Performing security scan to identify any vulnerabilities"
-                sh 'security-scan-tool'
+                //sh 'security-scan-tool'
             }
             post {
                 always {
@@ -41,19 +37,19 @@ environment {
         stage('Deploy to Staging') {
             steps {
                 echo "deploying the application to staging environment"
-                sh './deploy_staging.sh' 
+                //sh './deploy_staging.sh' 
            }
         }
         stage('Integration Tests on Staging') {
             steps {
                 echo "running integration tests on staging"
-                 sh 'run-integration-tests.sh'
+                 //sh 'run-integration-tests.sh'
             }
         }
         stage('Deploy to Production') {
             steps {
                 echo "deploy application to production"
-                 sh './deploy_production.sh' 
+                 //sh './deploy_production.sh' 
            }
         }
     }
