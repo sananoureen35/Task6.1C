@@ -23,14 +23,18 @@ environment {
                                      attachLog: true                  
                 }
             }*/
-            post {
+           post {
     always {
-        mail to: 'sananoureen35@gmail.com',
-             subject: "Unit and integration Outcome for ${env.JOB_NAME}",
-             body: "Review the Jenkins console output report at ${env.BUILD_URL} from the tests performed to know the result, Status: ${currentBuild.result}",
-             attachLog: true
+        emailext (
+            to: 'san@gmail.com',
+            subject: "Unit and Integration Test Outcomes for ${env.JOB_NAME}",
+            body: """Review the Jenkins console output report at ${env.BUILD_URL} from the tests performed to know the result, Status: ${currentBuild.result}.""",
+            attachmentsPattern: '**/logs/*.log', // Adjust the pattern to match where your logs are stored
+            mimeType: 'text/plain'
+        )
     }
 }
+
 
         }
        stage('Code Analysis') {
