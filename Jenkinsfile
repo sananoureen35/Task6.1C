@@ -15,13 +15,13 @@ environment {
             echo "running unit tests using maven JUnit to ensure the code functions as expected"
             //sh 'mvn test'
             }
-             post {
+            /* post {
                 always {
                           mail to: 'sananoureen35@gmail.com',
                                      subject: "Unit and integration Outcome for ${env.JOB_NAME}",
                                      body: "Review the Jenkins console output report at ${env.BUILD_URL} from the tests performed to know the result, Status: ${currentBuild.result}."                    
                 }
-            }
+            }*/
             post {
                 always {
                     script {
