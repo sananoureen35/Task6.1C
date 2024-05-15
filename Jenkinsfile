@@ -15,6 +15,15 @@ environment {
             echo "running unit tests using maven JUnit to ensure the code functions as expected"
             //sh 'mvn test'
             }
+             post {
+                always {
+                          mail to: 'sananoureen35@gmail.com',
+                                     subject: "Unit and integration Outcome for ${env.JOB_NAME}",
+                                     body: "Review the Jenkins console output report at ${env.BUILD_URL} from the tests performed to know the result, Status: ${currentBuild.result}."
+                                     attachLog: true
+                                     
+                }
+            }
         }
        stage('Code Analysis') {
     steps {
@@ -31,7 +40,8 @@ environment {
                 always {
                           mail to: 'sananoureen35@gmail.com',
                                      subject: "Security Scan Outcome for ${env.JOB_NAME}",
-                                     body: "Review the Jenkins console output report from the security scan performed to know the scan result."
+                                     body: "Review the Jenkins console output report at ${env.BUILD_URL} from the security scan performed to know the scan result Status: ${currentBuild.result}."
+                                     attachLog: true
                 }
             }
         }
@@ -52,17 +62,6 @@ environment {
                 echo "deploy application to production using Jenkins SSH Plugin"
                  //sh './deploy_production.sh' 
            }
-        }
-    }
-    post {
-    always {
-        mail bcc: '', 
-             cc: '', 
-             from: '', 
-             replyTo: '', 
-             subject: "Pipeline execution report for ${env.JOB_NAME}",
-             body: "The Pipeline execution has been completed. Please review the Jenkins console output for pipeline execution details.",
-             to: "sananoureen35@gmail.com"
         }
     }
 }
