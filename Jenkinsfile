@@ -12,20 +12,20 @@ environment {
         }
         stage('Unit and Integration Tests') {
             steps {
-            echo "running unit tests to ensure the code functions as expected"
+            echo "running unit tests using maven JUnit to ensure the code functions as expected"
             //sh 'mvn test'
             }
         }
        stage('Code Analysis') {
     steps {
-        echo "analyzing the code to ensure it meets the industry standard"
-        //sh 'sonar-scanner' using SonarQube
+        echo "analyzing the code using SonarQube to ensure it meets the industry standard"
+        //sh 'sonar-scanner' 
     }
 }
         stage('Security Scan') {
             steps {
-                echo "Performing security scan to identify any vulnerabilities"
-                //sh 'run-security-scan.sh'
+                echo "Performing security scan using OWASP ZAP or Fortify to identify any vulnerabilities"
+                //The OWASP ZAP or Fortify commands are called here
             }
             post {
                 always {
@@ -37,19 +37,19 @@ environment {
         }
         stage('Deploy to Staging') {
             steps {
-                echo "deploying the application to staging environment"
+                echo "deploying the application to staging environment using Jenkins SSH Plugin"
                 //sh './deploy_staging.sh' 
            }
         }
         stage('Integration Tests on Staging') {
             steps {
-                echo "running integration tests on staging"
-                 //sh 'run-integration-tests.sh'
+                echo "running integration tests on staging using Selenium"
+                 //Selenium commands are called here
             }
         }
         stage('Deploy to Production') {
             steps {
-                echo "deploy application to production"
+                echo "deploy application to production using Jenkins SSH Plugin"
                  //sh './deploy_production.sh' 
            }
         }
