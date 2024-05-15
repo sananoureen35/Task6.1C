@@ -26,7 +26,7 @@ environment {
            post {
     always {
         emailext (
-            to: 'san@gmail.com',
+            to: 'sananoureen35@gmail.com',
             subject: "Unit and Integration Test Outcomes for ${env.JOB_NAME}",
             body: """Review the Jenkins console output report at ${env.BUILD_URL} from the tests performed to know the result, Status: ${currentBuild.result}.""",
             attachmentsPattern: '**/logs/*.log', // Adjust the pattern to match where your logs are stored
