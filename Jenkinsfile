@@ -23,17 +23,24 @@ environment {
                                      attachLog: true                  
                 }
             }*/
-           post {
+         post {
     always {
+        script {
+            // Save the console output to a file
+            def logFile = "${env.WORKSPACE}/build-${env.BUILD_NUMBER}.log"
+            def consoleLog = manager.build.getLog(1000) // Adjust the number of lines as necessary
+            writeFile file: logFile, text: consoleLog
+        }
         emailext (
             to: 'sananoureen35@gmail.com',
-            subject: "Unit and Integration Test Outcomes for ${env.JOB_NAME}",
-            body: """Review the Jenkins console output report at ${env.BUILD_URL} from the tests performed to know the result, Status: ${currentBuild.result}.""",
-            attachmentsPattern: '**/logs/*.log', // Adjust the pattern to match where your logs are stored
+            subject: "Build Outcome for ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            body: """Here is the build log for ${env.JOB_NAME} at ${env.BUILD_URL}""",
+            attachmentsPattern: "**/build-${env.BUILD_NUMBER}.log",
             mimeType: 'text/plain'
         )
     }
 }
+
 
 
         }
