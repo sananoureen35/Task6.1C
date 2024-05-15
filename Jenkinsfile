@@ -26,9 +26,9 @@ environment {
                 always {
                    script {
                         // Get the log from the build and send email notification
-                        def log = currentBuild.rawBuild.getLog(100).join('\n')
+                        def log = currentBuild.getLog().join('\n')
                         emailext(
-                            to: 'developer@example.com',
+                            to: 'sananoureen35@gmail.com',
                             subject: "Unit and Integration Tests: ${currentBuild.currentResult}",
                             body: "Build Status: ${currentBuild.currentResult}\n\nLogs:\n${log}"
                         )
