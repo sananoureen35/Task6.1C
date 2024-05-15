@@ -7,24 +7,24 @@ environment {
         stage('Build') {
             steps {
                 echo "building the code using a maven build automation tool"
-                //sh './build.sh'
+                //sh 'mvn clean install'
             }
         }
         stage('Unit and Integration Tests') {
             steps {
-                //sh './test.sh'
+                //sh 'mvn test'
             }
         }
        stage('Code Analysis') {
     steps {
         echo "analyzing the code to ensure it meets the industry standard"
-        //sh 'sonar-scanner'
+        //sh 'sonar-scanner' using SonarQube
     }
 }
         stage('Security Scan') {
             steps {
                 echo "Performing security scan to identify any vulnerabilities"
-                //sh 'security-scan-tool'
+                //sh 'run-security-scan.sh'
             }
             post {
                 always {
