@@ -15,34 +15,14 @@ environment {
             echo "running unit tests using maven JUnit to ensure the code functions as expected"
             //sh 'mvn test'
             }
-            /* post {
+            post {
                 always {
                           mail to: 'sananoureen35@gmail.com',
                                      subject: "Unit and integration Outcome for ${env.JOB_NAME}",
-                                     body: "Review the Jenkins console output report at ${env.BUILD_URL} from the tests performed to know the result, Status: ${currentBuild.result}."
+                                     body: "Review the Jenkins console output report at ${env.BUILD_URL} from the tests performed to know the result, Status: ${currentBuild.result}.",
                                      attachLog: true                  
                 }
-            }*/
-         post {
-    always {
-        script {
-            // Save the console output to a file
-            def logFile = "${env.WORKSPACE}/build-${env.BUILD_NUMBER}.log"
-            def consoleLog = manager.build.getLog(1000) // Adjust the number of lines as necessary
-            writeFile file: logFile, text: consoleLog
-        }
-        emailext (
-            to: 'sananoureen35@gmail.com',
-            subject: "Build Outcome for ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-            body: """Here is the build log for ${env.JOB_NAME} at ${env.BUILD_URL}""",
-            attachmentsPattern: "**/build-${env.BUILD_NUMBER}.log",
-            mimeType: 'text/plain'
-        )
-    }
-}
-
-
-
+            }
         }
        stage('Code Analysis') {
     steps {
@@ -59,7 +39,8 @@ environment {
                 always {
                           mail to: 'sananoureen35@gmail.com',
                                      subject: "Security Scan Outcome for ${env.JOB_NAME}",
-                                     body: "Review the Jenkins console output report at ${env.BUILD_URL} from the security scan performed to know the scan result Status: ${currentBuild.result}."
+                                     body: "Review the Jenkins console output report at ${env.BUILD_URL} from the security scan performed to know the scan result Status: ${currentBuild.result}.",
+                                     attachLog: true 
                 }
             }
         }
