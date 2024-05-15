@@ -17,7 +17,7 @@ environment {
             }
             post {
                 always {
-                          emailtext (
+                          emailext (
                                to: 'sananoureen35@gmail.com',
                                subject: "Unit and integration Outcome for ${env.JOB_NAME}",
                                body: "Review the Jenkins console output report at ${env.BUILD_URL} from the tests performed to know the result, Status: ${currentBuild.result}.",
@@ -39,7 +39,7 @@ environment {
             }
             post {
                 always {
-                          emailtext (
+                          emailext (
                                to: 'sananoureen35@gmail.com',
                                subject: "Security Scan Outcome for ${env.JOB_NAME}",
                                body: "Review the Jenkins console output report at ${env.BUILD_URL} from the security scan performed to know the scan result Status: ${currentBuild.result}.",
